@@ -5,7 +5,7 @@
 #include <sstream>
 
 int check(std::vector<int> update, std::map<int, std::vector<int>> rules) {
-    std::set<int> passed = {0};
+    std::set passed = {0};
     for(int i = 0; i < update.size(); ++i) {
         for(auto m : rules[update.at(i)]) {
             if(passed.contains(m) ){
@@ -18,7 +18,7 @@ int check(std::vector<int> update, std::map<int, std::vector<int>> rules) {
 }
 
 std::vector<int> sortMy(std::vector<int> update, std::map<int, std::vector<int>> rules) {
-    std::set<int> passed = {0};
+    std::set passed = {0};
     for(int i = 0; i < update.size(); ++i) {
         for(auto m : rules[update.at(i)]) {
             if(passed.contains(m) ){
@@ -42,12 +42,11 @@ int main()
     std::ifstream input("../input.txt");
     std::string line;
     std::map<int, std::vector<int>> rules;
-    bool split = false;
-    int sumMidRight = 0;
-    int sumMidWrong = 0;
+    bool updateBlock = false;
+    int sumMidRight = 0, sumMidWrong = 0;
 
     while(std::getline(input, line)) {
-        if(split) {
+        if(updateBlock) {
             std::vector<int> update;
             std::stringstream ss(line);
             std::string token;
@@ -62,9 +61,8 @@ int main()
                 sumMidWrong += sortMy(update, rules).at((update.size()-1) / 2);
             }
         } else {
-            if(line =="") split = true;
-            int before;
-            int after;
+            if(line.empty()) updateBlock = true;
+            int before, after;
             sscanf(line.c_str(), "%d|%d", &before, &after);
             rules[before].push_back(after);
         }
