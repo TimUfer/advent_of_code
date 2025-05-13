@@ -68,7 +68,6 @@ int main()
         }
     }
 
-
     std::cout << "Sum from right Updates: " << sumMidRight << std::endl;
     std::cout << "Sum from wrong Updates: " << sumMidWrong << std::endl;
     return 0;
