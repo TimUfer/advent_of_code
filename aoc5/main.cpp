@@ -4,7 +4,7 @@
 #include <set>
 #include <sstream>
 
-int check(std::vector<int> update, std::map<int, std::vector<int>> rules) {
+int check(const std::vector<int>& update, std::map<int, std::vector<int>> rules) {
     std::set passed = {0};
     for(int i = 0; i < update.size(); ++i) {
         for(auto m : rules[update.at(i)]) {
@@ -17,7 +17,7 @@ int check(std::vector<int> update, std::map<int, std::vector<int>> rules) {
     return 1;
 }
 
-std::vector<int> sortMy(std::vector<int> update, std::map<int, std::vector<int>> rules) {
+std::vector<int> sortMy(std::vector<int>& update, std::map<int, std::vector<int>> rules) {
     std::set passed = {0};
     for(int i = 0; i < update.size(); ++i) {
         for(auto m : rules[update.at(i)]) {
@@ -37,8 +37,7 @@ std::vector<int> sortMy(std::vector<int> update, std::map<int, std::vector<int>>
     return update;
 }
 
-int main()
-{
+int main(){
     std::ifstream input("../input.txt");
     std::string line;
     std::map<int, std::vector<int>> rules;
